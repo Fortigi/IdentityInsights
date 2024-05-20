@@ -1,0 +1,379 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storage_account_name": {
+            "defaultValue": "",
+            "type": "String"
+        },
+        "automation_account_name": {
+            "defaultValue": "",
+            "type": "String"
+        },
+        "resource_group_name": {
+            "defaultValue": "",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Automation/automationAccounts",
+            "apiVersion": "2023-11-01",
+            "name": "[parameters('automation_account_name')]",
+            "location": "westeurope",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "publicNetworkAccess": true,
+                "disableLocalAuth": false,
+                "sku": {
+                    "name": "Basic"
+                },
+                "encryption": {
+                    "keySource": "Microsoft.Automation",
+                    "identity": {}
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2023-01-01",
+            "name": "[parameters('storage_account_name')]",
+            "location": "westeurope",
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "dnsEndpointType": "Standard",
+                "defaultToOAuthAuthentication": false,
+                "publicNetworkAccess": "Enabled",
+                "allowCrossTenantReplication": false,
+                "minimumTlsVersion": "TLS1_2",
+                "allowBlobPublicAccess": false,
+                "allowSharedKeyAccess": true,
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "requireInfrastructureEncryption": false,
+                    "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "blob": {
+                            "keyType": "Account",
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/powerShell72Modules",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/FortigiGraph')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "contentLink": {
+                    "uri": "https://devopsgallerystorage.blob.core.windows.net:443/packages/fortigigraph.1.0.20240206.1453.nupkg"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/runbooks",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/AzureRMExport')]",
+            "location": "westeurope",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "logVerbose": false,
+                "logProgress": false,
+                "logActivityTrace": 0,
+                "runbookType": "PowerShell7"
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/runbooks",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/MSGraphExport')]",
+            "location": "westeurope",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "logVerbose": false,
+                "logProgress": false,
+                "logActivityTrace": 0,
+                "runbookType": "PowerShell7"
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/AzureRM-Subscriptions')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "\"{\\\"ids\\\": [\\n\\\"GUID1\\\",\\n\\\"GUID2\\\"\\n]}\""
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/DataStorage-TenantName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "\"TenantName\""
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/DataStorage-AzureSubscription')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "\"SubscriptionName\""
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/DataStorage-DataContainer')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "\"identityinisghts\""
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/DataStorage-HistoryContainer')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "\"history\""
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/DataStorage-KeepHistory')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "true"
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/DataStorage-ResourceGroup')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "ResourceGroupName"
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/DataStorage-StorageAccountName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "StorageAccountName"
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/DataStorage-TranscriptContainer')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "\"transcripts\""
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/MSGraph-ClientID')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "\"ClientID\""
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/MSGraph-ClientSecret')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": true
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts/variables",
+            "apiVersion": "2023-11-01",
+            "name": "[concat(parameters('automation_account_name'), '/TenantName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Automation/automationAccounts', parameters('automation_account_name'))]"
+            ],
+            "properties": {
+                "isEncrypted": false,
+                "value": "\"TenantID\""
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2023-01-01",
+            "name": "[concat(parameters('storage_account_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storage_account_name'))]"
+            ],
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "changeFeed": {
+                    "enabled": false
+                },
+                "restorePolicy": {
+                    "enabled": false
+                },
+                "containerDeleteRetentionPolicy": {
+                    "enabled": true,
+                    "days": 7
+                },
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "allowPermanentDelete": false,
+                    "enabled": true,
+                    "days": 7
+                },
+                "isVersioningEnabled": false
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/queueServices",
+            "apiVersion": "2023-01-01",
+            "name": "[concat(parameters('storage_account_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storage_account_name'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/tableServices",
+            "apiVersion": "2023-01-01",
+            "name": "[concat(parameters('storage_account_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storage_account_name'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2023-01-01",
+            "name": "[concat(parameters('storage_account_name'), '/default/history')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storage_account_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storage_account_name'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2023-01-01",
+            "name": "[concat(parameters('storage_account_name'), '/default/identityinisghts')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storage_account_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storage_account_name'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2023-01-01",
+            "name": "[concat(parameters('storage_account_name'), '/default/transcripts')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storage_account_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storage_account_name'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        }
+    ]
+}

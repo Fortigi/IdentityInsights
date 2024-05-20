@@ -1,0 +1,27 @@
+FirstName;UPN;LastName;DisplayName;Department;Title;EmployeeID;Company;All Employees;All Internal Employees;VTC_Aq;VTC_Ap;VTC_Ao;VTC_An;VTC_Am;VTC_Al;VTC_Ak;VTC_Aj;VTC_Ai;VTC_Ah;VTC_Ag;VTC_Af;VTC_Ae;VTC_Ad;VTC_Ac;VTC_Ab;VTC_Aq_PRD;VTC_Ap_PRD;VTC_Ao_PRD;VTC_An_PRD;VTC_Am_PRD;VTC_Al_PRD;VTC_Ak_PRD;VTC_Aj_PRD;VTC_Ai_PRD;VTC_Ah_PRD;VTC_Ag_PRD;VTC_Af_PRD;VTC_Ae_PRD;VTC_Ad_PRD;VTC_Ac_PRD;VTC_Ab_PRD;App_Clockwize;APP_ServiceNow;MongoAccess;LIC_Project;LIC_PowerApps;LIC_O365_E1;LIC_O365_E5;App_Office365;App_Miro;Management Team;Management;Development;Engineering;Sales;Support;Security;HR
+Alice;Alice@iidemos.onmicrosoft.com;Heron;Alice Heron;Management;CEO;A0001;IIDemos;x;x;;;;;;;;;;;;;;;x;x;;;;;;;;;;;;;;;x;x;;x;;x;;;x;;x;x;x;;;;;;x
+Bob;Bob@iidemos.onmicrosoft.com;Lorcan;Bob Lorcan;Management;CFO;A0002;IIDemos;x;x;;;;x;x;;;x;x;x;x;x;x;x;x;x;;;;x;x;;;x;x;x;x;x;x;x;x;x;;x;;x;;;x;;x;x;x;;;x;;;x
+Carla;Carla@iidemos.onmicrosoft.com;Cash;Carla Cash;Management;CTO;A0003;IIDemos;x;x;;x;x;x;x;;;x;x;;x;x;x;x;x;x;;x;x;x;x;;;x;x;;x;x;x;x;x;x;;x;;x;;;x;x;x;x;x;x;;;;;
+David;David@iidemos.onmicrosoft.com;Marquess;David Marquess;Sales;Head of Sales;A0004;IIDemos;x;x;;x;x;;;x;x;;;x;x;x;;;x;x;;x;x;;;x;;;;x;x;x;;;;;x;;;;;;x;x;;;x;;;x;;;
+Edward;Edward@iidemos.onmicrosoft.com;Mackenzie;Edward Mackenzie;Sales;Account Executive;;KCMP;;;;;;;;x;x;;;x;x;x;x;x;;;;;;;;x;;;;x;x;x;;;;;x;;;;;x;;;x;;;;;x;;;
+Fred;Fred@iidemos.onmicrosoft.com;Emmanuel;Fred Emmanuel;Marketing;Marketing manager;A0006;IIDemos;x;x;;;;x;x;x;;x;x;;;;;;;;;;;x;x;x;x;x;;;;;x;x;;x;x;;;;;;x;x;x;;;;;x;;;
+Gerard;Gerard@iidemos.onmicrosoft.com;Tyson;Gerard Tyson;Development;Developer;A0007;IIDemos;x;x;x;x;x;x;;;;;;;;;;;x;x;x;x;x;x;;;x;x;;;;;;x;x;;x;;;;;;x;x;;;;x;;;;;
+Hanna;Hanna@iidemos.onmicrosoft.com;Pierce;Hanna Pierce;Development;Developer;A0008;IIDemos;x;x;x;;;;x;;x;x;x;x;x;x;x;x;;;x;;;;x;;x;x;x;x;;;;x;x;;;;;;;x;;;x;;;x;;;;;
+Irene;Irene@iidemos.onmicrosoft.com;Hatchett;Irene Hatchett;Development;Senior Developer;;Appro Consulting;x;;;x;x;;;x;;;;;;;;;x;x;;x;x;;;x;;;x;x;;x;x;;;x;x;;;x;;;x;;;;;x;;;;;
+Julie;Julie@iidemos.onmicrosoft.com;Thayer;Julie Thayer;Development;Junior Developer;A0010;IIDemos;x;x;;;;x;;;x;;;x;x;x;x;x;;;;;;x;;;;;x;x;x;x;x;;;;x;x;;;;;x;;;;;x;;;;;
+Kees;Kees@iidemos.onmicrosoft.com;Pittman;Kees Pittman;Development;Developer;;Appro Consulting;x;;x;;;;x;x;;x;x;;;;;;;;x;;;;x;x;x;x;;;x;x;x;x;x;;x;;;;;;x;x;x;;;x;;;;;
+Leo;Leo@iidemos.onmicrosoft.com;Lear;Leo Lear;Engineering;Engineer;A0012;IIDemos;x;x;;x;x;x;;;;;;;;;;;x;x;;x;x;x;;;x;;;;x;;;;;x;x;;x;;;;x;;;;;x;x;;;;
+Marthe;Marthe@iidemos.onmicrosoft.com;Spencer;Marthe Spencer;Engineering;Engineer;A0013;IIDemos;;;x;;;;x;;x;x;x;x;x;x;x;x;;;x;;;;x;;x;;x;x;;;;;;x;x;;x;;x;;x;x;;;;x;x;;;;
+Nora;Nora@iidemos.onmicrosoft.com;Satchel;Nora Satchel;Engineering;Senior Engineer;;Appro Consulting;x;;;x;x;;x;x;x;x;x;;;;;;x;x;;x;x;;x;x;;x;x;;;x;x;x;;x;x;;x;;x;;x;x;x;;;x;x;;;;
+Olga;Olga@iidemos.onmicrosoft.com;Tinsley;Olga Tinsley;Engineering;Engineer;A0015;IIDemos;x;x;;;x;x;x;;;;x;x;x;x;x;x;x;x;;;x;x;x;;;x;x;;x;x;;x;x;x;x;;x;x;x;;x;x;x;;;x;x;;;;
+Peter;Peter@iidemos.onmicrosoft.com;Montgomery;Peter Montgomery;Engineering;Junior Engineer;A0016;IIDemos;x;x;x;x;x;x;x;x;;;x;;x;x;x;x;;;x;x;x;x;x;x;x;;;x;x;x;;;;x;x;;x;;x;;x;x;;;;x;x;;;;
+Quintus;Quintus@iidemos.onmicrosoft.com;Briggs;Quintus Briggs;Engineering;Senior Engineer;A0017;IIDemos;x;x;;x;x;x;;x;x;x;;x;x;x;;;;;;x;x;x;;x;;;;x;x;;x;;;x;x;;x;;x;;x;x;x;;;x;x;;;;
+Richard;Richard@iidemos.onmicrosoft.com;Kenyon;Richard Kenyon;Support;Support Engineer;A0018;IIDemos;x;x;x;;;;x;x;;;;x;x;x;;;;;x;x;;;x;x;;x;x;;;;x;x;;;x;x;x;;;;x;x;x;;;;x;;x;;
+Sandi;Sandi@iidemos.onmicrosoft.com;Bailey;Sandi Bailey;Support;Support Engineer;A0019;IIDemos;x;x;;x;;;x;x;x;x;;;;;;;x;;;;;;x;x;;;;;;x;;;x;;x;x;x;;;;x;x;;;;;x;;x;;
+Tim;Tim@iidemos.onmicrosoft.com;Redmond;Tim Redmond;Support;Head of Support;A0020;IIDemos;x;x;x;x;x;x;;;;;;x;;;;;;;;;x;x;;;;;;x;x;;;;;x;x;x;x;x;;;x;;x;;;;x;;x;;
+Ulrich;Ulrich@iidemos.onmicrosoft.com;Underwood;Ulrich Underwood;Support;Support Engineer;;Jumbo Recruting;x;;x;x;;;;;;;;x;;;;;;;x;x;;;;;;;;;;;x;;;;x;x;x;;;;x;;;;;;x;;x;;
+Victor;Victor@iidemos.onmicrosoft.com;Draco;Victor Draco;IT;SecOps Engineer;A0022;IIDemos;x;x;;;x;x;;;x;x;;;;;x;x;x;;;;x;x;;;x;x;;;;;;x;x;;x;;x;;;;x;x;;;;;x;;x;x;
+Wim;Wim@iidemos.onmicrosoft.com;Troyes;Wim Troyes;IT;SecOps Engineer;A0023;IIDemos;x;x;;;;;;;;;;;;;;;;;x;x;;;;;;;;;;;;;;;x;;x;;;;x;x;x;;;;x;;x;x;
+Xander;Xander@iidemos.onmicrosoft.com;Osborne;Xander Osborne;Security;CISO;A0024;IIDemos;x;x;;;;;;;x;x;;x;x;x;;;x;;;;;;;;x;x;;x;x;x;;;x;;x;x;x;x;;;x;x;;;x;;;;;x;
+Yvonne;Yvonne@iidemos.onmicrosoft.com;Cole;Yvonne Cole;Development;DevSecOps Engineer;A0025;IIDemos;x;x;;;x;x;;;;x;;;;;;;x;;;;x;x;;;;x;;;;;;;x;;x;;x;;x;;x;x;;;;;;;;x;
+Zelma;Zelma@iidemos.onmicrosoft.com;Duniway;Zelma Duniway;Engineering;HR;A0026;IIDemos;x;x;;;;;;;x;x;;;;;;;;;x;x;;;;;x;x;;;;;;;;;x;;;;;;x;x;;;;;;;;;x
